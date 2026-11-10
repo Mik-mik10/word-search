@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101829">
+  <title>Word Search — Find Your Focus</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header>
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">W</div>
+        <div>
+          <div class="brand-name">WORD SEARCH</div>
+          <div class="brand-caption">A little brain break</div>
+        </div>
+      </div>
+      <div class="top-score" aria-label="Highest score for this difficulty">
+        <span>🏆 &nbsp;BEST</span>
+        <strong id="topBest">0</strong>
+      </div>
+    </header>
+
+    <section class="intro">
+      <p class="eyebrow">Pick a category to play</p>
+      <h1>WELCOME TO THE WORD SEARCH</h1>
+      <p class="subtitle">Choose your favorite topic, then find every hidden word.</p>
+    </section>
+
+    <section class="category-picker" id="categoryPicker" aria-label="Choose a word category">
+      <div class="category-heading">
+        <h2>Choose a category</h2>
+        <p>What would you like to search for?</p>
+      </div>
+      <div class="category-options" role="group" aria-label="Word categories">
+        <button type="button" class="category-card active" data-category="fruits" aria-pressed="true">
+          <span class="category-icon" aria-hidden="true">🍓</span>
+          <span class="category-name">Fruits</span>
+          <span class="category-description">Sweet and juicy words</span>
+        </button>
+        <button type="button" class="category-card" data-category="names" aria-pressed="false">
+          <span class="category-icon" aria-hidden="true">👋</span>
+          <span class="category-name">Names</span>
+          <span class="category-description">Popular first names</span>
+        </button>
+        <button type="button" class="category-card" data-category="colors" aria-pressed="false">
+          <span class="category-icon" aria-hidden="true">🎨</span>
+          <span class="category-name">Colors</span>
+          <span class="category-description">Find every shade</span>
+        </button>
+        <button type="button" class="category-card" data-category="countries" aria-pressed="false">
+          <span class="category-icon" aria-hidden="true">🌍</span>
+          <span class="category-name">Countries</span>
+          <span class="category-description">Explore the world</span>
+        </button>
+        <button type="button" class="category-card" data-category="places" aria-pressed="false">
+          <span class="category-icon" aria-hidden="true">🗺️</span>
+          <span class="category-name">Places</span>
+          <span class="category-description">Discover new places</span>
+        </button>
+        <button type="button" class="category-card" data-category="calendar" aria-pressed="false">
+          <span class="category-icon" aria-hidden="true">📅</span>
+          <span class="category-name">Calendar</span>
+          <span class="category-description">Months and weekdays</span>
+        </button>
+        <button type="button" class="category-card" data-category="popularCulture" aria-pressed="false">
+          <span class="category-icon" aria-hidden="true">🎬</span>
+          <span class="category-name">Popular Culture</span>
+          <span class="category-description">Music, movies, and more</span>
+        </button>
+        <button type="button" class="category-card" data-category="famousCharacters" aria-pressed="false">
+          <span class="category-icon" aria-hidden="true">🦸</span>
+          <span class="category-name">Famous Characters</span>
+          <span class="category-description">Heroes and storybook stars</span>
+        </button>
+      </div>
+      <button type="button" class="start-game" id="startGame">START GAME &nbsp; →</button>
+    </section>
+
+    <section class="game-screen" id="gameScreen" hidden>
+      <button type="button" class="back-category" id="backCategories">← &nbsp; CHANGE CATEGORY</button>
+      <div class="layout">
+      <section class="board-panel" aria-label="Word search puzzle">
+        <div class="board-top">
+          <div class="board-label" id="categoryLabel">FRUITS WORD SEARCH</div>
+          <div class="board-meta"><strong id="foundCount">0</strong> / <span id="totalCount">8</span> found</div>
+        </div>
+        <div id="grid" class="grid" role="group" aria-label="Letter grid"></div>
+        <div class="board-footer">
+          <span id="difficultyLabel">Easy · 8 × 8</span>
+          <span id="message" class="message" aria-live="polite">Pick a word to get started!</span>
+        </div>
+      </section>
+
+      <aside class="side-panel">
+        <div class="section-heading"><span>DIFFICULTY</span><span id="modeDescription">8 words · 8 × 8</span></div>
+        <div class="difficulty" role="group" aria-label="Choose difficulty">
+          <button type="button" data-mode="easy" class="active" aria-pressed="true">EASY</button>
+          <button type="button" data-mode="medium" aria-pressed="false">MEDIUM</button>
+          <button type="button" data-mode="hard" aria-pressed="false">HARD</button>
+        </div>
+
+        <div class="score-row">
+          <div class="score-card"><span>YOUR SCORE</span><strong id="score">0</strong></div>
+          <div class="score-card best"><span>HIGHEST SCORE</span><strong id="bestScore">0</strong></div>
+        </div>
+
+        <div class="section-heading"><span>WORDS TO FIND</span><span id="wordsRemaining">8 left</span></div>
+        <ul class="word-list" id="wordList"></ul>
+
+        <div class="win-banner" id="winBanner" role="status">
+          <span id="winMessage"></span>
+          <button type="button" class="next-puzzle" id="nextPuzzle" hidden>NEXT PUZZLE &nbsp; →</button>
+        </div>
+        <div class="divider"></div>
+        <div class="actions">
+          <button type="button" class="new-game" id="newGame">↻ &nbsp; NEW GAME</button>
+          <button type="button" class="reset-score" id="resetScore">Reset scores</button>
+        </div>
+        <p class="instructions">Drag across a word, or tap its first and last letters. Words can go across, down, or diagonally — forwards or backwards.</p>
+      </aside>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
